@@ -1,7 +1,9 @@
 from odoo import api, fields, models
 
+
 class PurchaseOrder(models.Model):
     _name = "wen.purchase.order.header"
+    _description = "Purchase Order Header"
 
     shipping_address = fields.Char(string='Shipping Address')
 
@@ -20,12 +22,20 @@ class PurchaseOrder(models.Model):
     # Notes
     note = fields.Text(string='Note')
 
+
 class PurchaseOrderDetails(models.Model):
     _name = "wen.purchase.order.detail"
+    _description = "Purchase Order Detail"
 
     item_id = fields.Char(string='Item Id')
-    quantity = fields.Char(string='Quantity')
-    price = fields.Char(string='Price')
+    quantity = fields.Integer(string='Quantity')
+    price = fields.Float(string='Price')
     product_id = fields.Many2one('wen.product', string="Product")
     order_id = fields.Many2one('wen.purchase.order.header',
-        ondelete='cascade', string="PO Header", required=True)
+                               ondelete='cascade', string="PO Header", required=True)
+    subtotal = fields.Float(string='Subtotal')
+
+    @api.onchange('price', 'quantity')
+    def _subtotal(self):
+        for r in self:
+            r.subtotal = r.price * r.quantity
