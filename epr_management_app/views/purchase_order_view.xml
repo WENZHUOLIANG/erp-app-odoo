@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="purchase_order_tree_view">
+        <field name="name">wen.purchase.order.header.tree</field>
+        <field name="model">wen.purchase.order.header</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Order">
+                <field name="po_number"/>
+                <field name="buyer"/>
+                <field name="vendor" />
+                <field name="purchase_date" />
+                <field name="delivery_date" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="purchase_order_form_view">
+        <field name="name">wen.purchase.order.header.form</field>
+        <field name="model">wen.purchase.order.header</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <sheet>
+                    <group>
+                        <field name="po_number" />
+                    </group>
+                    <notebook>
+                        <page string="header">
+                            <sheet>
+                                <group>
+                                    <field name="buyer" />
+                                    <field name="vendor" />
+                                    <field name="purchase_date" />
+                                    <field name="delivery_date" />
+                                </group>
+                                <group>
+                                    <field name="shipping_method" />
+                                    <field name="shipping_terms" />
+                                </group>
+                            </sheet>
+                        </page>
+                        <page string="details">
+                            <field name="purchase_order_details">
+                                <tree string="order details">
+                                    <field name="product_id"/>
+                                    <field name="price"/>
+                                    <field name="quantity"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes/Memo">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Order Detail Form -->
+    <record model="ir.ui.view" id="order_detail_form_view">
+        <field name="name">wen.purchase.order.detail.form</field>
+        <field name="model">wen.purchase.order.detail</field>
+        <field name="arch" type="xml">
+            <form string="Order Detail">
+                <sheet>
+                    <group>
+                        <field name="item_id"/>
+                        <field name="price"/>
+                        <field name="quantity"/>
+                        <field name="product_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="order_detail_action">
+        <field name="name">Order Detail</field>
+        <field name="res_model">wen.purchase.order.detail</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="purchase_order_act_window" model="ir.actions.act_window">
+        <field name="name">Purchase Order</field>
+        <field name="res_model">wen.purchase.order.header</field>
+        <field name="view_mode">tree,form,pivot</field>
+    </record>
+
+    <menuitem name="ERP Management App" id="purchase_order_menu_root" groups="base.group_user" sequence="10"></menuitem>
+
+    <menuitem name="Purchase Order" id="sec_purchase_order_menu" parent="purchase_order_menu_root" action="purchase_order_act_window" sequence="10"></menuitem>
+</odoo>

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wen_purchase_order_header_group_user,wen.purchase.order.header,model_wen_purchase_order_header,base.group_user,1,1,1,1
+access_wen_purchase_order_detail_group_user,wen.purchase.order.detail,model_wen_purchase_order_detail,base.group_user,1,1,1,1
+access_wen_buyer_group_user,wen.buyer,model_wen_buyer,base.group_user,1,1,1,1
+access_wen_vendor_group_user,wen.vendor,model_wen_vendor,base.group_user,1,1,1,1
+access_wen_vendor_group_product,wen.product,model_wen_product,base.group_user,1,1,1,1

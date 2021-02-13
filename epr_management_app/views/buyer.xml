@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="buyer_form_view">
+        <field name="name">Buyer</field>
+        <field name="model">wen.buyer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="company_name"/>
+                        <field name="email_address"/>
+                        <field name="address"/>
+                        <field name="city"/>
+                        <field name="zipCode"/>
+                        <field name="country"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="buyer_tree_view">
+        <field name="name">Buyer</field>
+        <field name="model">wen.buyer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="company_name"/>
+                <field name="email_address"/>
+                <field name="address"/>
+                <field name="city"/>
+                <field name="zipCode"/>
+                <field name="country"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="buyer_list_action">
+        <field name="name">Buyers</field>
+        <field name="res_model">wen.buyer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="buyer_menu" name="Buyer" parent="purchase_order_menu_root" action="buyer_list_action"/>
+</odoo>
