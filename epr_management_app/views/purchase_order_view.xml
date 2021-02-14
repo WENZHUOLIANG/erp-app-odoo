@@ -10,6 +10,8 @@
                 <field name="vendor" />
                 <field name="purchase_date" />
                 <field name="delivery_date" />
+                <field name="count_item" />
+                <field name="total_price" />
             </tree>
         </field>
     </record>
@@ -19,12 +21,19 @@
         <field name="model">wen.purchase.order.header</field>
         <field name="arch" type="xml">
             <form string="Purchase Order">
+                <header>
+                    <button name="make_sent" string="Sent" type="object"/>
+                    <button name="make_processing" string="Processing" type="object"/>
+                    <button name="make_received" string="Received" type="object"/>
+                    <button name="make_paid" string="Paid" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="po_number" />
                     </group>
                     <notebook>
-                        <page string="header">
+                        <page string="Order Header">
                             <sheet>
                                 <group>
                                     <field name="buyer" />
@@ -38,7 +47,7 @@
                                 </group>
                             </sheet>
                         </page>
-                        <page string="details">
+                        <page string="Order Details">
                             <field name="purchase_order_details">
                                 <tree string="order details">
                                     <field name="product_id"/>
